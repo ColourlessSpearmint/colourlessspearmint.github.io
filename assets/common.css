@@ -1010,12 +1010,22 @@ footer {
         max-width: 100vw;
     }
 
-    & .copyright {
-        font-style: italic;
-    }
-
     & span {
-        margin: auto;
+        & a {
+            color: var(--color-text);
+        }
+
+        &.copyright {
+            margin: auto;
+            font-style: italic;
+        }
+
+        &.repo,
+        &.contact {
+            @media (max-width: 768px) {
+                display: none;
+            }
+        }
     }
 }
 
