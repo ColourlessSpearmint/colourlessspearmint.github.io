@@ -1,0 +1,11 @@
+
+{{ define "main" }}
+<h1 class="animated">All Tags</h1>
+<article class="animated">
+    <div class="post-tags">
+        {{ range .Data.Terms.ByCount }}
+        <a class="post-tag animated" href="{{ .Page.Permalink }}">#{{ .Page.Title }} ({{ .Count }})</a>
+        {{ end }}
+    </div>
+</article>
+{{ end }}

@@ -1,0 +1,22 @@
+
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" }}
+{{ $is_gif := findRE "GIF" $alt }}
+{{ $is_nofig := findRE "NOFIG" $alt }}
+{{ $alt_processed := replace (replace $alt "GIF" "") "NOFIG" "" | strings.TrimSpace }}
+
+{{ if $is_nofig }}
+    <img src="{{ $src }}" alt="{{ $alt_processed }}" />
+{{ else }}
+<figure>
+    {{ if strings.HasSuffix $src ".webm" }}
+        {{ if $is_gif }}
+            <video class="gif" src="{{ $src }}" autoplay loop muted playsinline alt="{{ $alt_processed }}"></video>
+        {{ else }}
+            <video class="video" src="{{ $src }}" controls alt="{{ $alt_processed }}"></video>
+        {{ end }}
+    {{ else }}
+        <img src="{{ $src }}" alt="{{ $alt_processed }}" />
+    {{ end }}
+</figure>
+{{ end }}

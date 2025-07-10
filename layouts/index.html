@@ -1,0 +1,74 @@
+{{ define "main" }}
+<link rel="stylesheet" href="/static/home.css" />
+<script src="/static/home.js"></script>
+<div class="intro-container">
+    <div class="headshot">
+        <img
+            src="/media/ethan_home.webp"
+            alt="Ethan smiles pleasantly wearing a black suit and white shirt"
+        />
+    </div>
+    <div class="intro-text">
+        <div class="intro-heading-wrapper">
+            <span class="intro-heading scramble" aria-label="Ahoy!"
+                >Ahoy!</span
+            >
+        </div>
+        <div class="intro-subheading">
+            <p>My name is <strong>Ethan&nbsp;Marks</strong>.</p>
+            <p>I'm a software engineer.</p>
+        </div>
+    </div>
+</div>
+<article class="animate">
+    <h1>
+        <span>Welcome</span>
+        <span>To</span>
+        <span>My</span>
+        <span>Personal</span>
+        <span>Website</span>
+    </h1>
+    <p>This site represents my presence on the World Wide Web</p>
+    <div class="card-container">
+        <div class="tilt-card-wrapper">
+            <a
+                href="{{ "/about/" | relURL }}"
+                class="tilt-card"
+                data-tilt
+                data-tilt-glare
+                data-tilt-max-glare="0.18"
+                data-tilt-reverse="true"
+                data-tilt-perspective="900"
+            >
+                <div class="tilt-card-title">About Me</div>
+            </a>
+        </div>
+        <div class="tilt-card-wrapper">
+            <a
+                href="{{ "/blog/" | relURL }}"
+                class="tilt-card"
+                data-tilt
+                data-tilt-glare
+                data-tilt-max-glare="0.18"
+                data-tilt-reverse="true"
+                data-tilt-perspective="900"
+            >
+                <div class="tilt-card-title">Blog</div>
+            </a>
+        </div>
+        <div class="tilt-card-wrapper">
+            <a
+                href="{{ "/tag/projects/" | relURL }}"
+                class="tilt-card"
+                data-tilt
+                data-tilt-glare
+                data-tilt-max-glare="0.18"
+                data-tilt-reverse="true"
+                data-tilt-perspective="900"
+            >
+                <div class="tilt-card-title">Projects</div>
+            </a>
+        </div>
+    </div>
+</article>
+{{ end }}

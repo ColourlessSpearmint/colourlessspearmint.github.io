@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ .Title }}</title>
+        <meta name="description" content="{{ .Description }}" />
+        <link rel="canonical" href="{{ .Permalink }}" />
+        <meta property="og:title" content="{{ .Title }}" />
+        <meta property="og:description" content="{{ .Description }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ .Permalink }}" />
+        <link rel="stylesheet" href="/common.css" />
+        {{ if .HasShortcode "codehilite" }}
+        <link rel="stylesheet" href="/static/codehilite.css" />
+        {{ end }}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Sen:wght@400..800&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <script src="/common.js"></script>
+    </head>
+    <body>
+        {{ partial "header.html" . }}
+        <main>
+            {{ block "main" . }}{{ end }}
+        </main>
+        {{ partial "footer.html" . }}
+    </body>
+</html>

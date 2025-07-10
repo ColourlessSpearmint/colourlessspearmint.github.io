@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Text Scramble Animation</title>
+        <meta name="description" content="A demonstration of my text scrambling JavaScript animation" />
+        <link rel="canonical" href="https://colourlessspearmint.github.io/blog/scrambleanim/" />
+        <meta property="og:title" content="Text Scramble Animation" />
+        <meta property="og:description" content="A demonstration of my text scrambling JavaScript animation" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://colourlessspearmint.github.io/blog/scrambleanim/" />
+        <link rel="stylesheet" href="/common.css" />
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Sen:wght@400..800&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <script src="/common.js"></script>
+    </head>
+    <body>
+        <header>
+    <a href="/" class="title-container" tabindex="0" aria-label="Home">
+        <span class="title-item">Ethan</span>
+        <span class="title-item"> Marks</span>
+    </a>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/tag/projects">Projects</a>
+    </nav>
+</header>
+
+        <main>
+            
+<h1 class="animated">Text Scramble Animation</h1>
+
+<time class="animated" datetime="2025-06-29">June 29, 2025</time>
+
+
+<div class="post-tags">
+    
+    <a class="post-tag animated" href="/tags/programming">#programming</a>
+    
+    <a class="post-tag animated" href="/tags/webdev">#webdev</a>
+    
+    <a class="post-tag animated" href="/tags/codepen">#codepen</a>
+    
+</div>
+
+
+<div class="external-link-row">
+    <a class="external-link" href="https://codepen.io/ColourlessSpearmint/pen/jEPRNXG">
+        <img src="/media/icons/codepen.svg" alt="codepen icon" />
+        <span>CodePen</span>
+    </a>
+</div>
+
+<article class="animated"><p>Earlier today, 
+<a href="https://garden.bradwoods.io/" target="_blank" rel="noopener">Brad Woods Digital Garden</a>
+ made it to the 
+<a href="https://news.ycombinator.com/item?id=44393920" target="_blank" rel="noopener">front page of HN</a>
+. I had never heard of this website before, so I clicked on the link and explored it. As it turns out, it&rsquo;s the web development blog of 
+<a href="https://bradwoods.io/" target="_blank" rel="noopener">Brad Woods</a>
+. It&rsquo;s also one of the most detailed and high-effort webpages I&rsquo;ve seen in quite a while, and the 
+<a href="https://garden.bradwoods.io/notes/svg/scroll-driven-draw-animation" target="_blank" rel="noopener">blog content</a>
+ is high-quality and very interesting. But what really stood out to me was how most of the text on the page initially appears scrambled, and then gets &ldquo;solved&rdquo; in a quirky scramble animation.</p>
+
+
+
+
+
+
+
+
+<figure>
+    
+        
+            <video class="gif" src="/media/bradwoods_scramble.webm" autoplay loop muted playsinline alt="text scramble entrance animations of Brad Woods&#39; website"></video>
+        
+    
+</figure>
+
+
+<p>This effect is <em>awesome</em>, and I wanted to see how it would look on my website. I initially planned to just steal Woods&rsquo; animation by nabbing the code from my Firefox cache, but 
+<a href="https://garden.bradwoods.io/_next/static/chunks/7843-1c596a964b00992a.js" target="_blank" rel="noopener">he&rsquo;s minified and obfuscated</a>
+ it in a way that would take more effort to unravel than I&rsquo;m willing to expend.</p>
+<h2 id="my-implementation">My Implementation</h2>
+<p>So instead I just reverse engineered it. I wanted it to be a 
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations/Using_CSS_animations" target="_blank" rel="noopener">CSS keyframe animation</a>
+ that I could call within a class, but this kind of content manipulation isn&rsquo;t really doable in CSS. Instead I used the &ldquo;
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/animationstart_event" target="_blank" rel="noopener">animationstart</a>
+&rdquo; event in 
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener">JavaScript</a>
+. Here&rsquo;s the full JavaScript function I came up with. It&rsquo;s un-obfuscated because that&rsquo;s how <em>normal</em> developers publish code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>(<span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>    document.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;animationstart&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">animationName</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;scramble-text&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span> <span style="color:#66d9ef">instanceof</span> <span style="color:#a6e22e">HTMLElement</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">originalText</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">textContent</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">originalText</span>) <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">SCRAMBLE_CHARS</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;abcdefghijklmnopqrstuvwxyz0123456789&#39;</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">REVEAL_DELAY</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">SOLVE_DELAY</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">SCRAMBLE_SPEED</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">HIDDEN_CHAR</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\u2007&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">charStates</span> <span style="color:#f92672">=</span> Array.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">originalText</span>).<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">char</span> =&gt; ({
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">final</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">char</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">state</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;hidden&#39;</span>,
+</span></span><span style="display:flex;"><span>            }));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">textContent</span> <span style="color:#f92672">=</span> Array(<span style="color:#a6e22e">originalText</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>).<span style="color:#a6e22e">join</span>(<span style="color:#a6e22e">HIDDEN_CHAR</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">totalRevealTime</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">charStates</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#a6e22e">REVEAL_DELAY</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">totalAnimationDuration</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">totalRevealTime</span> <span style="color:#f92672">+</span> ((<span style="color:#a6e22e">charStates</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#a6e22e">SOLVE_DELAY</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">startTime</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">performance</span>.<span style="color:#a6e22e">now</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">charStates</span>.<span style="color:#a6e22e">forEach</span>((<span style="color:#a6e22e">charState</span>, <span style="color:#a6e22e">i</span>) =&gt; {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">charState</span>.<span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">charState</span>.<span style="color:#66d9ef">final</span>.<span style="color:#a6e22e">trim</span>() <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;&#39;</span>) <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;solved&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;scrambled&#39;</span>;
+</span></span><span style="display:flex;"><span>                }, <span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">REVEAL_DELAY</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">charState</span>.<span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;solved&#39;</span>;
+</span></span><span style="display:flex;"><span>                }, <span style="color:#a6e22e">totalRevealTime</span> <span style="color:#f92672">+</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">SOLVE_DELAY</span>));
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lastScrambleUpdate</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">prevOutput</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">update</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">currentTime</span>) =&gt; {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">elapsed</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">currentTime</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">startTime</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">elapsed</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">totalAnimationDuration</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">SOLVE_DELAY</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">textContent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">originalText</span>;
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">scrambleIntervalPassed</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">currentTime</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">lastScrambleUpdate</span>) <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">SCRAMBLE_SPEED</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">currentOutput</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">charStates</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">charState</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">charStates</span>[<span style="color:#a6e22e">i</span>];
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">switch</span> (<span style="color:#a6e22e">charState</span>.<span style="color:#a6e22e">state</span>) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;hidden&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#a6e22e">currentOutput</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">HIDDEN_CHAR</span>;
+</span></span><span style="display:flex;"><span>                            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;scrambled&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#a6e22e">currentOutput</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">scrambleIntervalPassed</span>
+</span></span><span style="display:flex;"><span>                                <span style="color:#f92672">?</span> <span style="color:#a6e22e">SCRAMBLE_CHARS</span>[Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">SCRAMBLE_CHARS</span>.<span style="color:#a6e22e">length</span>)]
+</span></span><span style="display:flex;"><span>                                <span style="color:#f92672">:</span> <span style="color:#a6e22e">prevOutput</span>[<span style="color:#a6e22e">i</span>];
+</span></span><span style="display:flex;"><span>                            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;solved&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                            <span style="color:#a6e22e">currentOutput</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">charState</span>.<span style="color:#66d9ef">final</span>;
+</span></span><span style="display:flex;"><span>                            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">scrambleIntervalPassed</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">lastScrambleUpdate</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">currentTime</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">element</span>.<span style="color:#a6e22e">textContent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">currentOutput</span>.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;&#39;</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">prevOutput</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">currentOutput</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">requestAnimationFrame</span>(<span style="color:#a6e22e">update</span>);
+</span></span><span style="display:flex;"><span>            };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">requestAnimationFrame</span>(<span style="color:#a6e22e">update</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }, { <span style="color:#a6e22e">passive</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> });
+</span></span><span style="display:flex;"><span>})();
+</span></span></code></pre></div><p>You use it by defining a CSS keyframe named scramble-text that doesn&rsquo;t do anything substantial, and the function will hijack that keyframe and add the text scramble animation. Here&rsquo;s an example implementation in CSS.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">scramble-me</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">animation</span>: scramble-text <span style="color:#ae81ff">1</span><span style="color:#66d9ef">s</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@<span style="color:#66d9ef">keyframes</span> <span style="color:#f92672">scramble-text</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">from</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">opacity</span>: <span style="color:#ae81ff">0.99</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">to</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">opacity</span>: <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="demo">Demo</h2>
+<p>I realize that you, dear reader, probably aren&rsquo;t invested enough to actually test out my code, so I&rsquo;ve made a little demo with 
+<a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>
+.</p>
+
+<iframe scrolling="no" title="Scramble Text Demo" src="https://codepen.io/ColourlessSpearmint/embed/jEPRNXG?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"></iframe>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>I love this effect. I added it to the &ldquo;Ahoy!&rdquo; heading on my 
+<a href="/">home page</a>
+, and I think it looks really cool. Feel free to use my code however you like.</p>
+<p>~Ethan</p>
+</article>
+
+        </main>
+        <footer>
+    <span>Ethan Marks, &copy;2025</span>
+</footer>
+
+    </body>
+</html>

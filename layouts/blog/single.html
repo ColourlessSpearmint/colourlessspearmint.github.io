@@ -1,0 +1,22 @@
+{{ define "main" }}
+<h1 class="animated">{{ .Title }}</h1>
+{{ with .Date }}
+<time class="animated" datetime="{{ .Format "2006-01-02" }}">{{ .Format "January 2, 2006" }}</time>
+{{ end }}
+{{ with .Params.tags }}
+<div class="post-tags">
+    {{ range . }}
+    <a class="post-tag animated" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+    {{ end }}
+</div>
+{{ end }}
+{{ if .Params.link }}
+<div class="external-link-row">
+    <a class="external-link" href="{{ .Params.link }}">
+        <img src="/media/icons/{{ .Params.link_icon | default "link" }}.svg" alt="{{ .Params.link_icon | default "link" }} icon" />
+        <span>{{ .Params.link_name | default "External Link" }}</span>
+    </a>
+</div>
+{{ end }}
+<article class="animated">{{ .Content }}</article>
+{{ end }}

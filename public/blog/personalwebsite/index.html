@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Personal Website</title>
+        <meta name="description" content="The website you&#39;re reading right now" />
+        <link rel="canonical" href="https://colourlessspearmint.github.io/blog/personalwebsite/" />
+        <meta property="og:title" content="Personal Website" />
+        <meta property="og:description" content="The website you&#39;re reading right now" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://colourlessspearmint.github.io/blog/personalwebsite/" />
+        <link rel="stylesheet" href="/common.css" />
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Sen:wght@400..800&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <script src="/common.js"></script>
+    </head>
+    <body>
+        <header>
+    <a href="/" class="title-container" tabindex="0" aria-label="Home">
+        <span class="title-item">Ethan</span>
+        <span class="title-item"> Marks</span>
+    </a>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/tag/projects">Projects</a>
+    </nav>
+</header>
+
+        <main>
+            
+<h1 class="animated">Personal Website</h1>
+
+<time class="animated" datetime="2025-05-14">May 14, 2025</time>
+
+
+<div class="post-tags">
+    
+    <a class="post-tag animated" href="/tags/projects">#projects</a>
+    
+    <a class="post-tag animated" href="/tags/programming">#programming</a>
+    
+    <a class="post-tag animated" href="/tags/webdev">#webdev</a>
+    
+    <a class="post-tag animated" href="/tags/personalwebsite">#personalwebsite</a>
+    
+</div>
+
+
+<div class="external-link-row">
+    <a class="external-link" href="https://github.com/ColourlessSpearmint/colourlessspearmint.github.io">
+        <img src="/media/icons/github.svg" alt="github icon" />
+        <span>GitHub Repo</span>
+    </a>
+</div>
+
+<article class="animated"><p>My personal website is my home on the web.</p>
+
+
+
+
+
+
+
+
+<figure>
+    
+        <img src="/index.html" alt="homepage" />
+    
+</figure>
+
+
+<p>I made this site because I want to have an online presence, but I don&rsquo;t want to use social media (e.g. 
+<a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+, 
+<a href="https://twitter.com/" target="_blank" rel="noopener">Twitter</a>
+), nor do I want to use someone else&rsquo;s premade blogging platform (e.g. 
+<a href="https://www.blogger.com" target="_blank" rel="noopener">Blogger</a>
+, 
+<a href="https://www.tumblr.com/" target="_blank" rel="noopener">Tumblr</a>
+, 
+<a href="https://wordpress.com/" target="_blank" rel="noopener">Wordpress</a>
+).</p>
+<p>My solution was to code an entire site from scratch.</p>
+<h2 id="tech">Tech</h2>
+<p>This site is completely static and is written entirely in pure vanilla HTML, CSS, and JavaScript. It uses a few unavoidable premade libraries and services, but it&rsquo;s completely free from major frameworks (e.g. 
+<a href="https://react.dev/" target="_blank" rel="noopener">React</a>
+, 
+<a href="https://vuejs.org/" target="_blank" rel="noopener">Vue.js</a>
+, 
+<a href="https://angular.io/" target="_blank" rel="noopener">Angular</a>
+).</p>
+<h3 id="external-libraries">External Libraries</h3>
+<ul>
+<li>
+<a href="https://micku7zu.github.io/vanilla-tilt.js/" target="_blank" rel="noopener">vanilla-tilt.js</a>
+: Used to make the cards on the home page.</li>
+<li>
+<a href="https://github.com/GoogleChromeLabs/quicklink" target="_blank" rel="noopener">quicklink</a>
+: Used to improve loading times.</li>
+</ul>
+<h3 id="github-pages">GitHub Pages</h3>
+<p>This site is hosted on 
+<a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>
+. I chose GitHub Pages because it&rsquo;s free, seems reputable, and I was already going to use GitHub for source control.</p>
+
+
+
+
+
+
+
+
+<figure>
+    
+        <img src="/media/ghpages.webp" alt="My Github Pages deployment workflow" />
+    
+</figure>
+
+
+<h3 id="build">Build</h3>
+<p>Each blog post is stored as a 
+<a href="/blog/mfm">Mint Flavoured Markdown</a>
+ document, and is built into HTML by my custom 
+<a href="https://en.wikipedia.org/wiki/Static_site_generator" target="_blank" rel="noopener">static site generator</a>
+. 
+<a href="https://github.com/ColourlessSpearmint/colourlessspearmint.github.io/blob/main/build.py" target="_blank" rel="noopener">My SSG</a>
+ searches the blog_src directory for markdown files, reads the file contents, and applies it to a template to create the final HTML files that are sent to your browser. It also dynamically updates other pages (like the 
+<a href="/tag">tag aggregators</a>
+) with links to each blog post. I also wrote a 
+<a href="https://git-scm.com/book/ms/v2/Customizing-Git-Git-Hooks" target="_blank" rel="noopener">pre-commit hook</a>
+ that runs build.py before each commit, ensuring I don&rsquo;t forget.</p>
+<h3 id="web-components">Web Components</h3>
+<p>For extremely repetitive elements that are exactly the same on every page, I utilize custom 
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components" target="_blank" rel="noopener">Web Components</a>
+. To use the example of the site header, I have a bit of JavaScript code that searches for &lt;ethan-header&gt; elements and replaces them with the actual header content. This allows me to de-clutter the HTML and also provides a 
+<a href="https://en.wikipedia.org/wiki/Single_source_of_truth" target="_blank" rel="noopener">single source of truth</a>
+ for the header. Here&rsquo;s the code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">customElements</span>.<span style="color:#a6e22e">define</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ethan-header&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EthanHeader</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">HTMLElement</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">constructor</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">super</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">connectedCallback</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;header&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;a href=&#34;/&#34; class=&#34;title-container&#34; tabindex=&#34;0&#34; aria-label=&#34;Home&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;span class=&#34;title-item&#34;&gt;Ethan&lt;/span&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;span class=&#34;title-item&#34;&gt; Marks&lt;/span&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;/a&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;nav&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;a href=&#34;/&#34;&gt;Home&lt;/a&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;a href=&#34;/about&#34;&gt;About&lt;/a&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;a href=&#34;/blog&#34;&gt;Blog&lt;/a&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;a href=&#34;/tag/projects&#34;&gt;Projects&lt;/a&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;/nav&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;/header&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            `</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>I chose to use 
+<a href="https://meyerweb.com/eric/thoughts/2023/11/01/blinded-by-the-light-dom/" target="_blank" rel="noopener">Light DOM</a>
+ over 
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM" target="_blank" rel="noopener">Shadow DOM</a>
+ for simplicity and performance, and so that I could seperate the CSS styles from the HTML structure.</p>
+<h2 id="style-guide">Style Guide</h2>
+<p>I had a moderately specific vision for what I wanted my website to look like, and I think I accomplished that well with my site&rsquo;s CSS styles. The primary stylesheet, 
+<a href="https://github.com/ColourlessSpearmint/colourlessspearmint.github.io/blob/main/common.css" target="_blank" rel="noopener">common.css</a>
+, contains 1215 lines of code. 
+<a href="https://github.com/ColourlessSpearmint/colourlessspearmint.github.io/blob/main/static/" target="_blank" rel="noopener">The auxilary stylesheets</a>
+ add another 2040 lines. I utilized 
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting" target="_blank" rel="noopener">nestled CSS</a>
+ to create reusable and readable styles.</p>
+<h3 id="color-palette">Color Palette</h3>
+<ul>
+<li><strong>Primary</strong>: <span style="color: #ffffff; text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;">#ffffff</span>: White</li>
+<li><strong>Backdrop</strong>: <span style="color: #121212; text-shadow: -1px -1px 0 #3c3c3c, 1px -1px 0 #3c3c3c, -1px 1px 0 #3c3c3c, 1px 1px 0 #3c3c3c;">#121212</span>: Black</li>
+<li><strong>Accent</strong>: <span style="color: #8fdfd4;">#8fdfd4</span>: Spearmint Teal</li>
+</ul>
+<h3 id="typography">Typography</h3>
+<ul>
+<li><strong>Primary Font</strong>: I perused the <em>entire</em> 
+<a href="https://fonts.google.com/" target="_blank" rel="noopener">Google Fonts</a>
+ catalogue to find a 
+<a href="https://fonts.google.com/knowledge/glossary/grotesque_neo_grotesque" target="_blank" rel="noopener">neo-grotesque</a>
+ font that I liked the look of and that supported both 
+<a href="https://en.wikipedia.org/wiki/Latin_script" target="_blank" rel="noopener">Latin</a>
+ and 
+<a href="https://en.wikipedia.org/wiki/Cyrillic_script" target="_blank" rel="noopener">Cyrillic</a>
+ glyphs. I finally settled on 
+<a href="https://fonts.google.com/specimen/Nunito" target="_blank" rel="noopener">Nunito</a>
+, and it&rsquo;s the default font that most text on the site uses.</li>
+<li><strong>Secondary Font</strong>: For the headings, I used 
+<a href="https://fonts.google.com/specimen/Sen" target="_blank" rel="noopener">Sen</a>
+. There are many subtle differences between Sen and Nunito, but the most noticable is the lack of rounded strokes. Sen looks sharper and more angular than Nunito.</li>
+</ul>
+<h3 id="special-effects">Special Effects</h3>
+<ul>
+<li><strong>Blur</strong>: I love 
+<a href="https://css.glass/" target="_blank" rel="noopener">glassmorphic</a>
+ blur effects, but due to performance concerns, I&rsquo;ve only used it in the header and footer. If some mathematician figures out how to cheaply perform a 
+<a href="https://en.wikipedia.org/wiki/Gaussian_blur" target="_blank" rel="noopener">gaussian blur</a>
+ over a large sample space, I want to be the first to know so I can add a subtle blur to the main panel without tanking performance.</li>
+<li><strong>Tilt</strong>: If you hover over the cards on my home page, they&rsquo;ll respond to the mouse by tilting in 3D. I used 
+<a href="https://micku7zu.github.io/vanilla-tilt.js/" target="_blank" rel="noopener">vanilla-tilt.js</a>
+ for this.</li>
+</ul>
+<h2 id="lighthouse">Lighthouse</h2>
+<p>As of 
+<a href="https://pagespeed.web.dev/analysis/https-colourlessspearmint-github-io/uxk33xj1o8?form_factor=desktop" target="_blank" rel="noopener">June 9, 2025</a>
+, the site earns an average 
+<a href="https://developer.chrome.com/docs/lighthouse" target="_blank" rel="noopener">Lighthouse</a>
+ score of 99.75.</p>
+
+
+
+
+
+
+
+
+<figure>
+    
+        <img src="/media/lighthouse.webp" alt="A Lighthouse analytic page showing 99 performance, 100 accessibility, 100 best practices, 100 SEO" />
+    
+</figure>
+
+
+<p>It&rsquo;s very close to a perfect score, but I lost one point in performance because of the 520 milliseconds (half a second) it takes to download the font.</p>
+<h2 id="privacy">Privacy</h2>
+<p>This site does not use cookies, trackers, analytics, or any external telemetry tools. This is partially because I care about your privacy, but mostly because I don&rsquo;t care about your personal information and harvesting it sounds complicated. Your data remains yours because I don&rsquo;t want it and can&rsquo;t figure out how to get it.</p>
+<h2 id="accessibility">Accessibility</h2>
+<p>This site is designed to be accessible to as many users as possible. I&rsquo;ve done my best to follow best practices regarding meta tags, semantic markup, keyboard navigation, and alt text. Also, before each 
+<a href="https://git-scm.com/docs/git-push" target="_blank" rel="noopener">git push</a>
+ I test every single page in Firefox&rsquo;s 
+<a href="https://firefox-source-docs.mozilla.org/devtools-user/responsive_design_mode/" target="_blank" rel="noopener">Responsive Design Mode</a>
+ to ensure that the site remains functional on different devices and screens.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>My personal website is one of my favorite projects I&rsquo;ve ever made. It&rsquo;s aesthetically pleasing, serves a purpose, was fun to make, and forced me to learn new programming concepts.</p>
+<p>I&rsquo;m proud of my little corner on the web, and I hope you enjoy it as much as I do. Thanks for reading.</p>
+<p>~Ethan</p>
+</article>
+
+        </main>
+        <footer>
+    <span>Ethan Marks, &copy;2025</span>
+</footer>
+
+    </body>
+</html>
