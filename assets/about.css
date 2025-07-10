@@ -4,8 +4,10 @@ h2 {
 }
 
 article {
-    max-width: 85vw;
-    width: 85vw;
+    @media (min-width: 768px) {
+        max-width: 85vw;
+        width: 85vw;
+    }
 }
 
 table {
