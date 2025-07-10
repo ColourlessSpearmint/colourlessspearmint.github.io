@@ -3,9 +3,12 @@
 <article class="animated">
     <div class="post-tags">
         {{ range .Data.Terms.ByCount }}
+        {{ $pages := where .Pages "Params.noindex" "!=" true }}
+        {{ if gt (len $pages) 0 }}
         <a class="post-tag" href="{{ .Page.Permalink }}"
-            >#{{ .Page.Title }} ({{ .Count }})</a
+            >#{{ .Page.Title }} ({{ len $pages }})</a
         >
+        {{ end }}
         {{ end }}
     </div>
 </article>
