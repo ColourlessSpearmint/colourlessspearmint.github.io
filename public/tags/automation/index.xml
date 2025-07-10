@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Automation on Ethan&#39;s Personal Website</title>
-    <link>http://localhost:1313/tags/automation/</link>
+    <link>https://colourlessspearmint.github.io/tags/automation/</link>
     <description>Recent content in Automation on Ethan&#39;s Personal Website</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 06 Jun 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/automation/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://colourlessspearmint.github.io/tags/automation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Scream Cipher Converter</title>
-      <link>http://localhost:1313/blog/screamcipher/</link>
+      <link>https://colourlessspearmint.github.io/blog/screamcipher/</link>
       <pubDate>Fri, 06 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/screamcipher/</guid>
+      <guid>https://colourlessspearmint.github.io/blog/screamcipher/</guid>
       <description>&lt;figure&gt;&#xA;    &#xA;        &lt;img src=&#34;https://imgs.xkcd.com/comics/scream_cipher.png&#34; alt=&#34;An xkcd comic describing a cipher where encrypted messages consist of only the letter &amp;#39;A&amp;#39;, with different diacritics applied to the &amp;#39;A&amp;#39; to represent each plaintext letter of the alphabet&#34; /&gt;&#xA;    &#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&lt;p&gt;This is one of my favorite &#xA;&lt;a href=&#34;https://xkcd.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;xkcd&lt;/a&gt;&#xA; comics. It proposes the &#xA;&lt;a href=&#34;https://xkcd.com/3054/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Scream Cipher&lt;/a&gt;&#xA;, a creative, amusing, and not &lt;em&gt;completely&lt;/em&gt; useless &#xA;&lt;a href=&#34;https://en.wikipedia.org/wiki/Cipher&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;cipher&lt;/a&gt;&#xA;.&lt;/p&gt;&#xA;&lt;p&gt;The Scream Cipher works by assigning each letter of the alphabet to a unique &#xA;&lt;a href=&#34;https://en.wikipedia.org/wiki/Diacritic&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;diacritical&lt;/a&gt;&#xA; variant of the letter A. For example, &amp;ldquo;THIS IS SOME EXAMPLE TEXT&amp;rdquo; becomes &amp;ldquo;ĀA̰ẢÃ ẢÃ ÃÅǍÁ ÁA̽AǍA̯ĂÁ ĀÁA̽Ā&amp;rdquo;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>ColourlessTransformer</title>
-      <link>http://localhost:1313/blog/colourlesstransformer/</link>
+      <link>https://colourlessspearmint.github.io/blog/colourlesstransformer/</link>
       <pubDate>Sun, 22 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/colourlesstransformer/</guid>
+      <guid>https://colourlessspearmint.github.io/blog/colourlesstransformer/</guid>
       <description>&lt;p&gt;&#xA;&lt;a href=&#34;https://github.com/Huage001/PaintTransformer&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;PaintTransformer&lt;/a&gt;&#xA; is a neural network that approximates images using paint strokes. This gives it a very pretty and stylized watercolor/painterly aesthetic.&lt;/p&gt;&#xA;&lt;p&gt;I like how this looks, and I&amp;rsquo;ll sometimes just run random photos through it to see how they turn out.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;figure&gt;&#xA;    &#xA;        &lt;img src=&#34;https://raw.githubusercontent.com/ColourlessSpearmint/ColourlessTransformer/main/images/walkway_painttransformer.jpg&#34; alt=&#34;A highly stylized watercolour-style image of a concrete walkway runs alongside a dense hedge of flowering bushes, all under a sleek red pergola.&#34; /&gt;&#xA;    &#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&lt;p&gt;Another cool thing you can do is save each step as a frame, which creates a cool animation similar to a &#xA;&lt;a href=&#34;https://youtu.be/1rc0qmqcqMY&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;watercolor timelapse&lt;/a&gt;&#xA;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Symphony of Industry</title>
-      <link>http://localhost:1313/blog/industry/</link>
+      <link>https://colourlessspearmint.github.io/blog/industry/</link>
       <pubDate>Mon, 29 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/industry/</guid>
-      <description>&lt;figure&gt;&#xA;    &#xA;        &lt;img src=&#34;http://localhost:1313/media/industry.webp&#34; alt=&#34;A complex and massive industrial chamber robotic arms, an assembly line, and welding sparks, all doused in cold blue light; generated with Imagen 3&#34; /&gt;&#xA;    &#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&#xA;&lt;blockquote class=&#34;centered-blockquote&#34;&gt;&#xA;    &lt;p&gt;The dawn&amp;rsquo;s first light, a furnace glow,&lt;br&gt;&#xA;Steel muscles flex, the pistons go.&lt;br&gt;&#xA;A rhythmic clang, a hammer&amp;rsquo;s blow,&lt;br&gt;&#xA;The symphony of industry starts to flow.&lt;/p&gt;&#xA;&lt;p&gt;Clang, clank, bang, the gears engage,&lt;br&gt;&#xA;A chorus of belts on a metal stage.&lt;br&gt;&#xA;Whines and hisses, a steamy rage,&lt;br&gt;&#xA;As pistons pump in their measured cage.&lt;/p&gt;</description>
+      <guid>https://colourlessspearmint.github.io/blog/industry/</guid>
+      <description>&lt;figure&gt;&#xA;    &#xA;        &lt;img src=&#34;https://colourlessspearmint.github.io/media/industry.webp&#34; alt=&#34;A complex and massive industrial chamber robotic arms, an assembly line, and welding sparks, all doused in cold blue light; generated with Imagen 3&#34; /&gt;&#xA;    &#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&#xA;&lt;blockquote class=&#34;centered-blockquote&#34;&gt;&#xA;    &lt;p&gt;The dawn&amp;rsquo;s first light, a furnace glow,&lt;br&gt;&#xA;Steel muscles flex, the pistons go.&lt;br&gt;&#xA;A rhythmic clang, a hammer&amp;rsquo;s blow,&lt;br&gt;&#xA;The symphony of industry starts to flow.&lt;/p&gt;&#xA;&lt;p&gt;Clang, clank, bang, the gears engage,&lt;br&gt;&#xA;A chorus of belts on a metal stage.&lt;br&gt;&#xA;Whines and hisses, a steamy rage,&lt;br&gt;&#xA;As pistons pump in their measured cage.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

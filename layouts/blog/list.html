@@ -14,18 +14,18 @@
         I've published <b>{{ len .Pages }}</b> posts so
         far. Each post is tagged with any of
         <b>{{ len .Site.Taxonomies.tags }}</b> descriptive
-        <a href="/tags/">tags</a>. Clicking on a tag will link you to
+        <a href="{{ "/tags/" | relURL }}">tags</a>. Clicking on a tag will link you to
         that tag's aggregator page, which links to all blog posts
         and projects with that tag. You can view a full list of tags
-        in the <a href="/tags/">tag index</a>.
+        in the <a href="{{ "/tags/" | relURL }}">tag index</a>.
     </p>
     <p>~Ethan</p>
 
     <div class="post-tags">
-        {{ range .Site.Taxonomies.tags.ByCount }}
-        <a class="post-tag animated" href="{{ .Page.Permalink }}">#{{ .Page.Title }}</a>
+        {{ range first 10 .Site.Taxonomies.tags.ByCount }}
+        <a class="post-tag animated" href="{{ .Page.Permalink | relURL }}">#{{ .Page.Title }}</a>
         {{ end }}
-        <a class="post-tag animated" href="/tags/">...</a>
+        <a class="post-tag animated" href="{{ "/tags/" | relURL }}">...</a>
     </div>
 
     <div class="random-blog-btn-container animated">
@@ -40,7 +40,7 @@
 
     <nav class="button-links">
         {{ range .Pages.ByDate.Reverse }}
-        <a class="button-link" href="{{ .Permalink }}">
+        <a class="button-link" href="{{ .Permalink | relURL }}">
             <span class="content">
                 <span class="title">{{ .Title }}</span>
                 <span class="description">{{ .Date.Format "January 2, 2006" }}</span>

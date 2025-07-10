@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Quanth on Ethan&#39;s Personal Website</title>
-    <link>http://localhost:1313/tags/quanth/</link>
+    <link>https://colourlessspearmint.github.io/tags/quanth/</link>
     <description>Recent content in Quanth on Ethan&#39;s Personal Website</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 24 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/quanth/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://colourlessspearmint.github.io/tags/quanth/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>I have invented a new measurement system</title>
-      <link>http://localhost:1313/blog/quanth/</link>
+      <link>https://colourlessspearmint.github.io/blog/quanth/</link>
       <pubDate>Thu, 24 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/quanth/</guid>
+      <guid>https://colourlessspearmint.github.io/blog/quanth/</guid>
       <description>&lt;p&gt;Metric or Imperial? Those are the two ways to measure distance.&lt;/p&gt;&#xA;&lt;p&gt;On the one hand, Metric is the international standard, it scales better than Imperial, and it has several nice approximations (1 kilometer ≈ 10 minutes walking time).&lt;/p&gt;&#xA;&lt;p&gt;But on the other hand, Feet are simply a more convenient length than Meters. Also, I&amp;rsquo;m American, so the vast majority of the people I interact with use Imperial, making it more useful.&lt;/p&gt;</description>
     </item>
   </channel>
