@@ -544,7 +544,7 @@ table {
     }
 }
 
-.highlight {
+pre {
     position: relative;
     font-family: var(--font-monospace);
     width: fit-content;
@@ -569,22 +569,11 @@ table {
         margin-left: -18px;
         margin-right: -18px;
     }
-
-    & pre {
-        margin: 0;
-        overflow-x: auto;
-        white-space: pre;
-        display: block;
-        background-color: transparent !important;
-    }
-
-    & .hll {
-        background-color: var(--color-accent-transparent-15);
-    }
 }
 
-.ascii-art {
+.language-ascii {
     text-align: left;
+    font-size: clamp(0.1rem, 2vw, 0.5rem);
     font-family: var(--font-monospace);
     width: fit-content;
     margin-left: auto;
@@ -595,10 +584,6 @@ table {
         width: auto;
         margin-left: 0;
         margin-right: 0;
-    }
-
-    &.large {
-        font-size: clamp(0.1rem, 2vw, 0.5rem);
     }
 }
 
