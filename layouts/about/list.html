@@ -1,6 +1,7 @@
-{{ define "main" }}
-{{ $aboutCss := resources.Get "about.css" | minify }}
+{{ define "resources" }} {{ $aboutCss := resources.Get "about.css" | minify }}
 <link rel="stylesheet" href="{{ $aboutCss.Permalink }}" />
+
+{{ end }} {{ define "main" }}
 <h1 class="animated">{{ .Title }}</h1>
 <article class="animated">
     <section>

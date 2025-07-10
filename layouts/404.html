@@ -1,11 +1,13 @@
-{{ define "main" }}
-<link rel="stylesheet" href="/404.css" />
+{{ define "resources" }}
 <link
     href="https://fonts.googleapis.com/css2?family=Kenia&display=swap"
     rel="stylesheet"
 />
+{{ $fourOhFourCss := resources.Get "404.css"| minify }}
+<link rel="stylesheet" href="{{ $fourOhFourCss.Permalink }}" />
 {{ $fourOhFourJs := resources.Get "404.js" | minify }}
 <script src="{{ $fourOhFourJs.Permalink }}"></script>
+{{ end }} {{ define "main" }}
 <h1 class="nomint">404</h1>
 <p>Page not found</p>
 {{ end }} {{ define "after_main" }}

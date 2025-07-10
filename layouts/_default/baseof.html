@@ -10,7 +10,6 @@
         <meta property="og:description" content="{{ .Description }}" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="{{ .Permalink }}" />
-        <link rel="stylesheet" href="/common.css" />
         {{ $commonCss := resources.Get "common.css" | minify }}
         <link rel="stylesheet" href="{{ $commonCss.Permalink }}" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,6 +21,7 @@
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         {{ $commonJs := resources.Get "common.js" | minify }}
         <script src="{{ $commonJs.Permalink }}"></script>
+        {{ block "resources" . }}{{ end }}
     </head>
     <body>
         {{ partial "header.html" . }}
