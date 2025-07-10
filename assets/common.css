@@ -174,7 +174,7 @@ body {
 
 main {
     width: 100%;
-    margin: var(--main-margin-top) 0;
+    margin: var(--main-margin-top) 0 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -244,9 +244,10 @@ article {
     max-width: 95%;
     padding: var(--spacing-lg);
     background: var(--color-article-bg);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
     box-shadow: var(--shadow-article);
     border: var(--border-standard);
+    border-bottom: none;
     transform: translateY(0);
     transition: var(--transition-transform-shadow);
 
@@ -985,7 +986,6 @@ footer {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-top: 40px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     transform: translate3d(0, 0, 0);
