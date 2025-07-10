@@ -1,13 +1,19 @@
-
 {{ define "main" }}
 <h1 class="animated">{{ .Title }}</h1>
 <article class="animated">
+    {{ with index .Site.Data.tags (.Title | urlize) }} {{ if .definition }}
+    <p class="definition">{{ .definition }}</p>
+    {{ end }} {{ if .text }}
+    <p>{{ .text | safeHTML }}</p>
+    {{ end }} {{ end }}
     <nav class="button-links">
-        {{ range .Pages }}
+        {{ range (where .Pages "Params.noindex" "ne" true).ByDate.Reverse }}
         <a class="button-link" href="{{ .Permalink }}">
             <span class="content">
                 <span class="title">{{ .Title }}</span>
-                <span class="description">{{ .Date.Format "January 2, 2006" }}</span>
+                <span class="description"
+                    >{{ .Date.Format "January 2, 2006" }}</span
+                >
             </span>
         </a>
         {{ end }}
