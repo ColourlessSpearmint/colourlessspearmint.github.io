@@ -12,7 +12,8 @@
         <link rel="stylesheet" href="/static/ethanintelligence.css" />
         <link rel="icon" href="/media/ei-favicon.ico" type="image/x-icon" />
         <script src="/common.js"></script>
-        <script src="/static/ethanintelligence.js"></script>
+        {{ $eiJs := resources.Get "ethanintelligence.js" | minify }}
+<script src="{{ $eiJs.Permalink }}"></script>
     </head>
     <body>
         <div class="page-container">

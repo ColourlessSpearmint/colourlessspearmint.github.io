@@ -204,6 +204,7 @@
         </main>
 
         <ethan-footer></ethan-footer>
-        <script src="/static/thessa.js"></script>
+        {{ $thessaJs := resources.Get "thessa.js" | minify }}
+<script src="{{ $thessaJs.Permalink }}"></script>
     </body>
 </html>

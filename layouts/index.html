@@ -1,6 +1,7 @@
 {{ define "main" }}
 <link rel="stylesheet" href="/home.css" />
-<script src="/home.js"></script>
+{{ $homeJs := resources.Get "home.js" | minify }}
+<script src="{{ $homeJs.Permalink }}"></script>
 <div class="intro-container">
     <div class="headshot">
         <img
