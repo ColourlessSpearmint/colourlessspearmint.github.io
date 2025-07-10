@@ -591,7 +591,6 @@ pre {
 }
 
 .post-tags {
-    width: 80%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
@@ -600,6 +599,10 @@ pre {
     align-items: center;
     margin-top: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
+
+    @media (min-width: 768px) {
+        width: 80%;
+    }
 
     & .post-tag {
         display: inline-block;
