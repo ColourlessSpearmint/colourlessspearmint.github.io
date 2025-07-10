@@ -15,6 +15,11 @@
                     >{{ .Date.Format "January 2, 2006" }}</span
                 >
             </span>
+            <span class="tags">
+                {{ range .Params.tags }}
+                <span class="tag">{{ . }}</span>
+                {{ end }}
+            </span>
         </a>
         {{ end }}
     </nav>
