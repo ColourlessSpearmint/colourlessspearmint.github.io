@@ -18,12 +18,7 @@ My solution was to code an entire site from scratch.
 
 ## Tech
 
-This site is completely static and is written entirely in pure vanilla HTML, CSS, and JavaScript. It uses a few unavoidable premade libraries and services, but it's completely free from major frameworks (e.g. [React](https://react.dev/), [Vue.js](https://vuejs.org/), [Angular](https://angular.io/)).
-
-### External Libraries
-
-- [vanilla-tilt.js](https://micku7zu.github.io/vanilla-tilt.js/): Used to make the cards on the home page.
-- [quicklink](https://github.com/GoogleChromeLabs/quicklink): Used to improve loading times.
+This site is completely static and was programmed from scratch in pure vanilla [HTML](https://en.wikipedia.org/wiki/HTML), [CSS](https://en.wikipedia.org/wiki/CSS), and [JavaScript](https://en.wikipedia.org/wiki/JavaScript).
 
 ### GitHub Pages
 
@@ -33,47 +28,17 @@ This site is hosted on [GitHub Pages](https://pages.github.com/). I chose GitHub
 
 ### Build
 
-Each blog post is stored as a [Mint Flavoured Markdown](/blog/mfm) document, and is built into HTML by my custom [static site generator](https://en.wikipedia.org/wiki/Static_site_generator). [My SSG](https://github.com/ColourlessSpearmint/colourlessspearmint.github.io/blob/main/build.py) searches the blog_src directory for markdown files, reads the file contents, and applies it to a template to create the final HTML files that are sent to your browser. It also dynamically updates other pages (like the [tag aggregators](/tag)) with links to each blog post. I also wrote a [pre-commit hook](https://git-scm.com/book/ms/v2/Customizing-Git-Git-Hooks) that runs build.py before each commit, ensuring I don't forget.
+This site is built using [Hugo](https://gohugo.io/), an [SSG](https://en.wikipedia.org/wiki/Static_site_generator) written in [Go](https://en.wikipedia.org/wiki/Go_(programming_language)).
 
-### Web Components
-
-For extremely repetitive elements that are exactly the same on every page, I utilize custom [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components). To use the example of the site header, I have a bit of JavaScript code that searches for <ethan-header\> elements and replaces them with the actual header content. This allows me to de-clutter the HTML and also provides a [single source of truth](https://en.wikipedia.org/wiki/Single_source_of_truth) for the header. Here's the code.
-
-```javascript
-customElements.define(
-    "ethan-header",
-    class EthanHeader extends HTMLElement {
-        constructor() {
-            super();
-        }
-
-        connectedCallback() {
-            this.innerHTML = `
-            <header>
-                <a href="/" class="title-container" tabindex="0" aria-label="Home">
-                    <span class="title-item">Ethan</span>
-                    <span class="title-item"> Marks</span>
-                </a>
-                <nav>
-                    <a href="/">Home</a>
-                    <a href="/about">About</a>
-                    <a href="/blog">Blog</a>
-                    <a href="/tag/projects">Projects</a>
-                </nav>
-            </header>
-            `;
-        }
-    }
-);
-```
-
-I chose to use [Light DOM](https://meyerweb.com/eric/thoughts/2023/11/01/blinded-by-the-light-dom/) over [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM) for simplicity and performance, and so that I could seperate the CSS styles from the HTML structure.
+Before [switching to Hugo](/blog/hugoswitch), this site used a custom SSG I wrote with 500+ lines of [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) code, archived [here](https://github.com/ColourlessSpearmint/colourlessspearmint.github.io/blob/b194fe064cbbc43dc714fbde7b27d47dfcad262f/build.py).
 
 ## Style Guide
 
 I had a moderately specific vision for what I wanted my website to look like, and I think I accomplished that well with my site's CSS styles. The primary stylesheet, [common.css](https://github.com/ColourlessSpearmint/colourlessspearmint.github.io/blob/main/common.css), contains 1215 lines of code. [The auxilary stylesheets](https://github.com/ColourlessSpearmint/colourlessspearmint.github.io/blob/main/static/) add another 2040 lines. I utilized [nestled CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting) to create reusable and readable styles.
 
 ### Color Palette
+
+This site uses a dark theme with a spearmint teal accent colour.
 
 - **Primary**: <span style="color: #ffffff; text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;">#ffffff</span>: White
 - **Backdrop**: <span style="color: #121212; text-shadow: -1px -1px 0 #3c3c3c, 1px -1px 0 #3c3c3c, -1px 1px 0 #3c3c3c, 1px 1px 0 #3c3c3c;">#121212</span>: Black
