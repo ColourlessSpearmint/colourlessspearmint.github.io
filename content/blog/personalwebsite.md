@@ -10,7 +10,7 @@ link_icon: github
 
 My personal website is my home on the web.
 
-{{< figure src="/index.html" alt="homepage" >}}
+{{< iframe src="/index.html" alt="homepage" >}}
 
 I made this site because I want to have an online presence, but I don't want to use social media (e.g. [Instagram](https://www.instagram.com/), [Twitter](https://twitter.com/)), nor do I want to use someone else's premade blogging platform (e.g. [Blogger](https://www.blogger.com), [Tumblr](https://www.tumblr.com/), [Wordpress](https://wordpress.com/)).
 
