@@ -2,14 +2,12 @@
 <h1 class="animated">All Tags</h1>
 <article class="animated">
     <div class="post-tags">
-        {{ range .Data.Terms.ByCount }}
-        {{ $pages := where .Pages "Params.noindex" "!=" true }}
-        {{ if gt (len $pages) 0 }}
+        {{ range .Data.Terms.ByCount }} {{ $pages := where .Pages
+        "Params.unlisted" "!=" true }} {{ if gt (len $pages) 0 }}
         <a class="post-tag" href="{{ .Page.Permalink }}"
             >#{{ .Page.Title }} ({{ len $pages }})</a
         >
-        {{ end }}
-        {{ end }}
+        {{ end }} {{ end }}
     </div>
 </article>
 {{ end }}

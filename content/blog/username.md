@@ -1,5 +1,5 @@
 ---
-noindex: True
+unlisted: True
 title: My Username
 tags: []
 description: An explanation of my username, ColourlessSpearmint

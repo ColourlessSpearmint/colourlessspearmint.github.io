@@ -10,7 +10,7 @@
         me.
     </p>
     <p>
-        I've published <b>{{ len (where .Pages "Params.noindex" "ne" true) }}</b> posts so
+        I've published <b>{{ len (where .Pages "Params.unlisted" "ne" true) }}</b> posts so
         far. Each post is tagged with any of
         <b>{{ len .Site.Taxonomies.tags }}</b> descriptive
         <a href="{{ "/tags/" | relURL }}">tags</a>. Clicking on a tag will link you to
@@ -38,7 +38,7 @@
     </div>
 
     <nav class="button-links">
-        {{ range (where .Pages "Params.noindex" "ne" true).ByDate.Reverse }}
+        {{ range (where .Pages "Params.unlisted" "ne" true).ByDate.Reverse }}
         <a class="button-link" href="{{ .Permalink | relURL }}">
             <span class="content">
                 <span class="title">{{ .Title }}</span>
