@@ -8,7 +8,7 @@ link_name: Thessa Webpage
 link_icon: link
 ---
 
-{{< figure src="/media/thessa/screenshot.webp" alt="A screenshot of the Thessa interface showing synonyms for the word 'screenshot'" >}}
+{{< figure src="/media/thessascreenshot.webp" alt="A screenshot of the Thessa interface showing synonyms for the word 'screenshot'" >}}
 
 A while ago, I [configured my instance of ChatGPT](https://help.openai.com/en/articles/8096356-custom-instructions-for-chatgpt) to "respond with a [Dale-Chall readability level](https://en.wikipedia.org/wiki/Dale%E2%80%93Chall_readability_formula) of 9.1". This is a precise way of telling it to 'use big words'.
 
