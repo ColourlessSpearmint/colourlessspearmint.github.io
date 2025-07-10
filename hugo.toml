@@ -1,4 +1,3 @@
-
 baseURL = "https://colourlessspearmint.github.io"
 languageCode = "en-us"
 title = "Ethan's Personal Website"
@@ -8,3 +7,7 @@ title = "Ethan's Personal Website"
 
 [markup.goldmark.renderer]
   unsafe = true
+
+[markup]
+  [markup.highlight]
+    style = "github-dark"
