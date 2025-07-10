@@ -51,3 +51,6 @@ out/
 # Debugging directory used while developing and migrating to build paradigm
 blog_out/
 projects_out/
+
+# Hugo output directory
+public/
