@@ -1,0 +1,757 @@
+<!-- Disclaimer: Most of this page was made using AI, which is why it uses such a different HTML methodology -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ethan Intelligence</title>
+        <meta
+            name="description"
+            content="A joke AI chat interface for a clone of Ethan Marks"
+        />
+        <link rel="icon" href="/media/ei-favicon.ico" type="image/x-icon" />
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Rubik&display=swap");
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Rubik", sans-serif;
+            }
+
+            body {
+                background-color: #0a0b21;
+                min-height: 100vh;
+                color: white;
+            }
+
+            .page-container {
+                padding-top: 20px;
+                max-width: 1200px;
+                margin: 0 auto 20px;
+            }
+
+            /* Entrance animations */
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .intro-section {
+                animation: fadeInUp 1s ease-out;
+            }
+
+            .chat-container {
+                animation: fadeIn 1.5s ease-out;
+            }
+
+            .message {
+                opacity: 0;
+                animation: fadeInUp 0.5s ease-out forwards;
+            }
+
+            .message.bot-message {
+                animation-delay: 0.5s;
+            }
+
+            .message.user-message {
+                animation-delay: 1s;
+            }
+
+            .intro-section {
+                border: 2px solid #2e304b;
+                border-radius: 5px;
+                color: white;
+                padding: 80px;
+                text-align: left;
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 40px;
+            }
+
+            .intro-content {
+                position: relative;
+                z-index: 2;
+                max-width: 55%;
+            }
+
+            .intro-heading {
+                font-family: "Audiowide", sans-serif;
+                font-size: 50px;
+                font-weight: bold;
+                margin-bottom: 25px;
+                line-height: 1.2;
+                background: linear-gradient(90deg, #ffffff, #9aacff);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .intro-subheading {
+                font-size: 22px;
+                margin-bottom: 30px;
+                color: #7f8adb;
+                font-weight: 600;
+            }
+
+            .intro-text {
+                font-size: 18px;
+                margin-bottom: 30px;
+                line-height: 1.8;
+                color: #b4b7d1;
+            }
+
+            .gradient-bg {
+                position: absolute;
+                right: -100px;
+                top: 0;
+                width: 70%;
+                height: 100%;
+                background: radial-gradient(
+                    circle,
+                    rgba(128, 0, 128, 0.4) 0%,
+                    rgba(76, 0, 153, 0.2) 50%,
+                    rgba(0, 0, 0, 0) 80%
+                );
+                z-index: 1;
+            }
+
+            .illustration {
+                position: relative;
+                z-index: 2;
+                width: 40%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Add rotation animation */
+            @keyframes rotate {
+                from {
+                    transform: rotate(0deg);
+                }
+
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .illustration svg {
+                width: 100%;
+                max-width: 400px;
+                filter: drop-shadow(0 5px 15px rgba(76, 141, 255, 0.4));
+                animation: rotate 20s linear infinite;
+                transition: transform 0.3s ease;
+            }
+
+            .chat-container {
+                width: 100%;
+                max-width: 800px;
+                height: 600px;
+                background-color: #0d1029;
+                border-radius: 20px;
+                overflow: hidden;
+                position: relative;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+                margin: 0 auto 80px;
+            }
+
+            .chat-header {
+                display: flex;
+                align-items: center;
+                padding: 20px;
+                background-color: #0d1029;
+                color: white;
+            }
+
+            .chat-logo {
+                font-family: "Audiowide", sans-serif;
+                font-size: 32px;
+                font-weight: bold;
+                color: #4c8dff;
+                margin-right: 10px;
+            }
+
+            .chat-messages {
+                height: calc(100% - 150px);
+                overflow-y: auto;
+                padding: 20px;
+            }
+
+            .message {
+                margin-bottom: 15px;
+                display: flex;
+                max-width: 80%;
+                animation: fadeIn 0.3s ease-out forwards;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: scale(0.95);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+
+            .user-message {
+                margin-left: auto;
+                justify-content: flex-end;
+            }
+
+            .bot-message {
+                justify-content: flex-start;
+            }
+
+            .avatar {
+                min-width: 40px;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #4c8dff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 10px;
+                flex-shrink: 0;
+            }
+
+            .user-avatar {
+                background-color: #445070;
+                order: 2;
+                margin-left: 10px;
+                margin-right: 0;
+            }
+
+            .message-content {
+                padding: 15px;
+                border-radius: 18px;
+                color: white;
+                font-size: 16px;
+                line-height: 1.4;
+            }
+
+            .user-content {
+                background-color: #171a31;
+            }
+
+            .bot-content {
+                background: linear-gradient(135deg, #331c7e 0%, #4c8dff 100%);
+            }
+
+            .chat-input {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                padding: 20px;
+                display: flex;
+                align-items: center;
+            }
+
+            .message-input {
+                flex: 1;
+                padding: 15px 20px;
+                border-radius: 30px;
+                border: none;
+                background-color: #171a31;
+                color: #99a4c4;
+                font-size: 16px;
+                outline: none;
+            }
+
+            .send-button {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: #4c8dff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                margin-left: 10px;
+                border: none;
+            }
+
+            .send-icon {
+                width: 24px;
+                height: 24px;
+                fill: white;
+            }
+
+            .avatar-icon {
+                color: white;
+                font-size: 20px;
+            }
+
+            .bot-message .avatar-icon {
+                font-family: "Audiowide", sans-serif;
+            }
+
+            /* Custom scrollbar */
+            .chat-messages::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            .chat-messages::-webkit-scrollbar-track {
+                background: #0d1029;
+            }
+
+            .chat-messages::-webkit-scrollbar-thumb {
+                background: #1a1d36;
+                border-radius: 10px;
+            }
+
+            /* Mobile Responsive Styles */
+            @media screen and (max-width: 768px) {
+                body {
+                    padding: 10px;
+                }
+
+                .intro-section {
+                    flex-direction: column;
+                    padding: 30px 20px;
+                }
+
+                .intro-content {
+                    max-width: 100%;
+                    margin-bottom: 30px;
+                    order: 2;
+                }
+
+                .illustration {
+                    width: 100%;
+                    max-width: 300px;
+                    margin-bottom: 20px;
+                    order: 1;
+                }
+
+                .intro-heading {
+                    font-size: 36px;
+                    text-align: center;
+                }
+
+                .intro-subheading {
+                    font-size: 18px;
+                    text-align: center;
+                }
+
+                .intro-text {
+                    font-size: 16px;
+                    text-align: center;
+                }
+
+                .gradient-bg {
+                    right: 0;
+                    width: 100%;
+                    opacity: 0.5;
+                }
+
+                .chat-container {
+                    height: 500px;
+                    margin-bottom: 40px;
+                }
+
+                .chat-header {
+                    padding: 15px;
+                }
+
+                .chat-logo {
+                    font-size: 48px;
+                }
+
+                .chat-title {
+                    font-size: 18px;
+                }
+
+                .message {
+                    max-width: 90%;
+                }
+
+                .message-content {
+                    padding: 12px;
+                    font-size: 14px;
+                }
+
+                .chat-input {
+                    padding: 15px;
+                }
+
+                .message-input {
+                    padding: 12px 15px;
+                    font-size: 14px;
+                }
+
+                .send-button {
+                    width: 45px;
+                    height: 45px;
+                }
+            }
+
+            @media screen and (max-width: 480px) {
+                .intro-section {
+                    padding: 20px 15px;
+                }
+
+                .intro-heading {
+                    font-size: 28px;
+                }
+
+                .intro-subheading {
+                    font-size: 16px;
+                }
+
+                .intro-text {
+                    font-size: 14px;
+                }
+
+                .chat-container {
+                    height: 450px;
+                    border-radius: 15px;
+                }
+
+                .chat-logo {
+                    font-size: 20px;
+                }
+
+                .chat-title {
+                    font-size: 16px;
+                }
+
+                .avatar {
+                    min-width: 32px;
+                    width: 32px;
+                    height: 32px;
+                }
+
+                .avatar-icon {
+                    font-size: 16px;
+                }
+
+                .message {
+                    max-width: 95%;
+                }
+
+                .message-content {
+                    padding: 10px;
+                    font-size: 13px;
+                }
+
+                .chat-input {
+                    padding: 10px;
+                }
+
+                .message-input {
+                    padding: 10px;
+                }
+
+                .send-button {
+                    width: 40px;
+                    height: 40px;
+                }
+
+                .send-icon {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+
+            /* Fix chat height on small screens */
+            @media screen and (max-height: 700px) {
+                .chat-container {
+                    height: 550px;
+                }
+            }
+
+            /* Fix for very small devices */
+            @media screen and (max-width: 320px) {
+                .intro-heading {
+                    font-size: 24px;
+                }
+
+                .chat-title {
+                    font-size: 14px;
+                }
+
+                .chat-logo {
+                    font-size: 18px;
+                }
+            }
+
+            .inspiration {
+                text-align: center;
+                color: #7f8adb;
+                font-size: 14px;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page-container">
+            <div class="intro-section">
+                <div class="gradient-bg"></div>
+                <div class="intro-content">
+                    <h1 class="intro-heading">Ethan Intelligence</h1>
+                    <h2 class="intro-subheading">
+                        The next step in the Ethan Emulation Project
+                    </h2>
+                    <p class="intro-text">
+                        Ethan Intelligence leverages cutting-edge natural
+                        language processing to deliver a hyper-realistic
+                        simulation of having a conversation with me. As of yet,
+                        no practical uses have been discovered for this.
+                    </p>
+                </div>
+                <div class="illustration">
+                    <svg
+                        viewBox="0 0 500 500"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <defs>
+                            <linearGradient
+                                id="gradient1"
+                                x1="0%"
+                                y1="0%"
+                                x2="100%"
+                                y2="100%"
+                            >
+                                <stop offset="0%" stop-color="#4c8dff" />
+                                <stop offset="100%" stop-color="#331c7e" />
+                            </linearGradient>
+                            <linearGradient
+                                id="gradient2"
+                                x1="0%"
+                                y1="0%"
+                                x2="100%"
+                                y2="100%"
+                            >
+                                <stop offset="0%" stop-color="#331c7e" />
+                                <stop offset="100%" stop-color="#a64dff" />
+                            </linearGradient>
+                        </defs>
+                        <circle
+                            cx="250"
+                            cy="250"
+                            r="200"
+                            fill="none"
+                            stroke="url(#gradient1)"
+                            stroke-width="4"
+                            opacity="0.3"
+                        />
+                        <circle
+                            cx="250"
+                            cy="250"
+                            r="160"
+                            fill="none"
+                            stroke="url(#gradient1)"
+                            stroke-width="6"
+                            opacity="0.5"
+                        />
+                        <circle
+                            cx="250"
+                            cy="250"
+                            r="120"
+                            fill="none"
+                            stroke="url(#gradient1)"
+                            stroke-width="8"
+                            opacity="0.7"
+                        />
+                        <circle
+                            cx="250"
+                            cy="250"
+                            r="80"
+                            fill="none"
+                            stroke="url(#gradient2)"
+                            stroke-width="10"
+                            opacity="0.9"
+                        />
+                        <circle
+                            cx="250"
+                            cy="250"
+                            r="40"
+                            fill="url(#gradient2)"
+                        />
+                        <g id="particles">
+                            <circle cx="350" cy="150" r="8" fill="#4c8dff" />
+                            <circle cx="180" cy="360" r="6" fill="#a64dff" />
+                            <circle cx="400" cy="280" r="10" fill="#4c8dff" />
+                            <circle cx="150" cy="180" r="7" fill="#331c7e" />
+                            <circle cx="320" cy="400" r="9" fill="#a64dff" />
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-logo">Ethan Intelligence</div>
+                </div>
+
+                <div class="chat-messages" id="chat-messages">
+                    <!-- Bot messages -->
+                    <div class="message bot-message">
+                        <div class="avatar">
+                            <span class="avatar-icon">EI</span>
+                        </div>
+                        <div class="message-content bot-content">
+                            Hello! How can I assist you today?
+                        </div>
+                    </div>
+
+                    <!-- User messages -->
+                    <div class="message user-message">
+                        <div class="avatar user-avatar">
+                            <span class="avatar-icon">U</span>
+                        </div>
+                        <div class="message-content user-content">
+                            What kind of things can you do?
+                        </div>
+                    </div>
+
+                    <!-- Bot response -->
+                    <div class="message bot-message">
+                        <div class="avatar">
+                            <span class="avatar-icon">EI</span>
+                        </div>
+                        <div class="message-content bot-content">
+                            I can find links, make anagrams, and photoshop
+                            things. You're on your own for the rest lol
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input">
+                    <input
+                        type="text"
+                        class="message-input"
+                        id="message-input"
+                        placeholder="Ask Ethan..."
+                    />
+                    <button class="send-button" id="send-button">
+                        <svg class="send-icon" viewBox="0 0 24 24">
+                            <path
+                                d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"
+                            ></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <p class="inspiration">
+                Inspired by when Evangeline called me "EthanGPT"
+            </p>
+        </div>
+    </body>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const messageInput = document.getElementById("message-input");
+            const sendButton = document.getElementById("send-button");
+            const chatMessages = document.getElementById("chat-messages");
+
+            // Function to add a new message
+            function addMessage(content, isUser) {
+                const messageDiv = document.createElement("div");
+                messageDiv.className = `message ${
+                    isUser ? "user-message" : "bot-message"
+                }`;
+
+                const avatar = document.createElement("div");
+                avatar.className = `avatar ${isUser ? "user-avatar" : ""}`;
+
+                const avatarIcon = document.createElement("span");
+                avatarIcon.className = "avatar-icon";
+                avatarIcon.textContent = isUser ? "U" : "EI";
+
+                const messageContent = document.createElement("div");
+                messageContent.className = `message-content ${
+                    isUser ? "user-content" : "bot-content"
+                }`;
+                messageContent.textContent = content;
+
+                avatar.appendChild(avatarIcon);
+                messageDiv.appendChild(avatar);
+                messageDiv.appendChild(messageContent);
+
+                chatMessages.appendChild(messageDiv);
+
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Send message function
+            function sendMessage() {
+                const message = messageInput.value.trim();
+                if (message) {
+                    // Add user message
+                    addMessage(message, true);
+
+                    // Clear input
+                    messageInput.value = "";
+
+                    // Show "typing..." message
+                    const typingIndicator = document.createElement("div");
+                    typingIndicator.className =
+                        "message bot-message typing-indicator";
+                    typingIndicator.innerHTML = `
+                        <div class="avatar">
+                            <span class="avatar-icon">EI</span>
+                        </div>
+                        <div class="message-content bot-content">thinking,..</div>
+                    `;
+                    chatMessages.appendChild(typingIndicator);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                    // Replace with actual bot response after a delay
+                    setTimeout(() => {
+                        typingIndicator.remove(); // Remove the "..." indicator
+                        addMessage(
+                            "That's a great question/comment/whatever! Unfortunately, this is just a prewritten message. I couldn't be bothered to integrate an actual AI into this overproduced attempt at humor.",
+                            false
+                        );
+                    }, 1500);
+                }
+            }
+
+            // Event listeners
+            sendButton.addEventListener("click", sendMessage);
+
+            messageInput.addEventListener("keypress", (e) => {
+                if (e.key === "Enter") {
+                    sendMessage();
+                }
+            });
+
+            // Fix for mobile virtual keyboard adjusting viewport height
+            const originalHeight = window.innerHeight;
+            window.addEventListener("resize", () => {
+                if (window.innerHeight < originalHeight) {
+                    // Keyboard is likely open
+                    document.body.style.height = originalHeight + "px";
+                } else {
+                    document.body.style.height = "";
+                }
+            });
+        });
+    </script>
+</html>
