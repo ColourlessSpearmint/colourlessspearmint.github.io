@@ -242,7 +242,7 @@ article {
     margin: var(--article-margin-top) 0 0;
     width: 75%;
     max-width: 95%;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
     background: var(--color-article-bg);
     border-radius: var(--radius-xl) var(--radius-xl) 0 0;
     box-shadow: var(--shadow-article);
@@ -252,7 +252,6 @@ article {
     transition: var(--transition-transform-shadow);
 
     & > :first-child {
-        margin-top: 0px;
         @media (max-width: 768px) {
             margin-top: 6px;
         }
