@@ -188,7 +188,8 @@ main {
     }
 }
 
-p {
+p,
+li {
     font-weight: var(--font-weight-normal);
     word-break: normal;
 }
