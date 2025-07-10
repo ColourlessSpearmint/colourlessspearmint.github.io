@@ -7,6 +7,8 @@ description: a specification of Mint Flavoured Markdown, a custom markdown flavo
 
 {{< figure src="/media/mfm-banner.webp" alt="The Mint Flavoured Markdown logo, a capital 'M' covered in minty vegetation and adjacent to an arrow pointing down. Designed by Imagen 4, edited by Ethan Marks" >}}
 
+***EDIT (2025-07-10):** I've decommissioned MFM from this site's build step. I'm using [Hugo](https://gohugo.io/) now. You can read more about my reasoning [here](/blog/hugoswitch).*
+
 When I started designing and prototyping my [personal website](/blog/personalwebsite), I was very much inspired by [this blog post](https://leanrada.com/notes/vanilla-web-rewrite/) by [Lean Rada](https://leanrada.com/). Basically, it advocates for authoring blog content in pure [HTML](https://en.wikipedia.org/wiki/HTML), rather than using a [static site generator](https://en.wikipedia.org/wiki/Static_site_generator) like [Jekyll](https://en.wikipedia.org/wiki/Jekyll_(software)) that converts [Markdown](https://en.wikipedia.org/wiki/Markdown) into HTML.
 
 This made a lot of sense to me, as I really didn't want to have to learn Jekyll (in fact, I wanted to [Hyde](https://en.wikipedia.org/wiki/Strange_Case_of_Dr_Jekyll_and_Mr_Hyde) from it entirely). So for a couple months, I authored each and every blog post in pure HTML.
