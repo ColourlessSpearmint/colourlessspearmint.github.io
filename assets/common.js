@@ -11,39 +11,45 @@
     }
 })();
 
-// Set footer position if page height is less than viewport height
-(function makeFooterStickyOnShortPages() {
-    function updateFooterPosition() {
+// Handle short pages: fix footer, background, and anchor article
+(function handleShortPage() {
+    function updateShortPageElements() {
+        const body = document.body;
         const footer = document.querySelector("footer");
-        if (!footer) {
-            // If there's no footer on the page, do nothing.
-            return;
+        const article = document.querySelector("article");
+        const isShortPage =
+            document.documentElement.scrollHeight <= window.innerHeight;
+
+        // Update footer position
+        if (footer) {
+            if (isShortPage) {
+                footer.classList.add("fixed-bottom");
+            } else {
+                footer.classList.remove("fixed-bottom");
+            }
         }
 
-        // Check if the document's total height is less than or equal to the viewport height.
-        if (document.documentElement.scrollHeight <= window.innerHeight) {
-            footer.classList.add("fixed-bottom");
-        } else {
-            footer.classList.remove("fixed-bottom");
+        // Update background attachment via class
+        if (body) {
+            if (isShortPage) {
+                body.classList.add("background-fixed");
+            } else {
+                body.classList.remove("background-fixed");
+            }
+        }
+
+        // Add or remove 'anchored' class to article
+        if (article) {
+            if (!isShortPage) {
+                article.classList.add("anchored");
+            } else {
+                article.classList.remove("anchored");
+            }
         }
     }
 
-    // Run the function when the DOM is ready and when the window is resized.
-    window.addEventListener("DOMContentLoaded", updateFooterPosition);
-    window.addEventListener("resize", updateFooterPosition);
-})();
-
-// Set background attachment: fixed if scroll height is less than viewport height
-(function setBackgroundAttachmentFixedIfShortPage() {
-    function updateBackgroundAttachment() {
-        if (document.documentElement.scrollHeight <= window.innerHeight) {
-            document.body.style.backgroundAttachment = "fixed";
-        } else {
-            document.body.style.backgroundAttachment = "";
-        }
-    }
-    window.addEventListener("DOMContentLoaded", updateBackgroundAttachment);
-    window.addEventListener("resize", updateBackgroundAttachment);
+    window.addEventListener("DOMContentLoaded", updateShortPageElements);
+    window.addEventListener("resize", updateShortPageElements);
 })();
 
 // Add 'scroll' class to tables wider than 90vw

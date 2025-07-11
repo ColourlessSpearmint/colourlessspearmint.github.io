@@ -170,6 +170,10 @@ body {
     /* Reset default body margin */
     font-size: var(--font-size-base);
     overflow-wrap: break-word;
+
+    &.background-fixed {
+        background-attachment: fixed;
+    }
 }
 
 main {
@@ -245,10 +249,9 @@ article {
     max-width: 95%;
     padding: var(--spacing-md) var(--spacing-lg);
     background: var(--color-article-bg);
-    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    border-radius: var(--radius-xl);
     box-shadow: var(--shadow-article);
     border: var(--border-standard);
-    border-bottom: none;
     transform: translateY(0);
     transition: var(--transition-transform-shadow);
 
@@ -256,6 +259,11 @@ article {
         @media (max-width: 768px) {
             margin-top: 6px;
         }
+    }
+
+    &.anchored {
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        border-bottom: none;
     }
 
     @media (max-width: 768px) {
