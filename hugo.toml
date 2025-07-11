@@ -11,3 +11,7 @@ title = "Ethan's Personal Website"
 [markup]
   [markup.highlight]
     style = "github-dark"
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
