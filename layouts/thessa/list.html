@@ -2,181 +2,83 @@
 <link rel="stylesheet" href="{{ $thessaCss.Permalink }}" />
 {{ $thessaJs := resources.Get "thessa.js" | minify }}
 <script src="{{ $thessaJs.Permalink }}"></script>
-{{ end }} {{ define "main" }}
-<div class="header-title">
-    <h1>Thessa</h1>
-    <svg
-        id="thessa-info-btn"
-        class="info-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        title="About Thessa"
-    >
-        <circle cx="12" cy="12" r="10"></circle>
-        <line x1="12" y1="16" x2="12" y2="12"></line>
-        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-    </svg>
-    <svg
-        id="settings-btn"
-        class="info-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        title="Settings (API Key)"
-    >
-        <circle cx="12" cy="12" r="3"></circle>
-        <path
-            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
-        ></path>
-    </svg>
-</div>
-<p class="tagline">AI Thesaurus</p>
+{{ end }}
 
-<div class="input-area">
-    <input
-        type="text"
-        id="word-input"
-        placeholder="Enter a word or phrase (e.g., 'brilliant')"
-    />
-    <button id="generate-btn" title="Generate Synonyms">
-        <svg
-            class="btn-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-        >
-            <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-    </button>
+{{ define "main" }}
+<div id="thessa-container" class="initial-state">
+
+    <div class="header-container">
+        <div class="header-title">
+            <h1>Thessa</h1>
+            <svg id="thessa-info-btn" class="info-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" title="About Thessa">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <svg id="settings-btn" class="info-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" title="Settings (API Key)">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+        </div>
+        <div class="input-area">
+            <input type="text" id="word-input" placeholder="Discover a word..." autocomplete="off" />
+            <button id="generate-btn" title="Generate">
+                <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="loading-container" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p id="loading-text">Contacting Gemini...</p>
+    </div>
+
+    <div id="results-area" class="results-area">
+        <div id="main-cards-container"></div>
+        <div id="synonyms-container" class="capsule-group" style="display: none;">
+            <h2>Synonyms</h2>
+            <div class="capsule-wrapper"></div>
+        </div>
+        <div id="antonyms-container" class="capsule-group" style="display: none;">
+            <h2>Antonyms</h2>
+            <div class="capsule-wrapper"></div>
+        </div>
+        <div id="cognates-container" class="capsule-group" style="display: none;">
+            <h2>Cognates</h2>
+            <div class="capsule-wrapper"></div>
+        </div>
+    </div>
+
+    <p id="message-box" class="message-box" style="display: none;"></p>
 </div>
 
-<div class="results-area">
-    <div id="loading-spinner" class="loading-spinner"></div>
-    <h2 id="results-title" style="display: none">Synonyms:</h2>
-    <ul id="synonym-list"></ul>
-    <p id="message-box" class="message-box" style="display: none"></p>
-</div>
+<div id="hover-popover"></div>
 
-<!-- About Thessa Modal -->
+<!-- Modals and copy notification -->
 <div id="about-thessa-modal" class="modal-overlay">
     <div class="modal-content">
-        <button
-            class="modal-close-btn"
-            id="about-modal-close-btn"
-            aria-label="Close modal"
-        >
-            ×
-        </button>
+        <button class="modal-close-btn" id="about-modal-close-btn" aria-label="Close modal">×</button>
         <h3>About Thessa</h3>
         <p>Thessa is your AI-powered thesaurus.</p>
-        <p>
-            Simply enter a word, and Thessa will provide a curated list of
-            synonyms, some common substitutes and some rare archaisms. The last
-            synonym will be a Bulgarian cognate.
-        </p>
-        <p>
-            Click on any synonym to get a concise definition generated by AI.
-            Click the synonym again while the definition is open to copy it to
-            your clipboard.
-        </p>
-        <p>
-            To use Thessa, you'll need to provide your own
-            <a href="https://aistudio.google.com/app/apikey"
-                >Google Gemini API key</a
-            >. This key is stored securely in your browser's local storage. You
-            can manage your API key via the settings icon (⚙️).
-        </p>
-        <p>Expand your vocabulary and refine your expression with Thessa!</p>
-        <p style="font-size: 0.85em; opacity: 0.7">
-            <em
-                >Powered by
-                <a
-                    href="https://ai.google.dev/gemini-api"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >Google Gemini API</a
-                ></em
-            >
-        </p>
+        <p>Enter a word to discover its definition, etymology, synonyms, antonyms, and even cognates in other languages. Click on any data point to copy it. Hover over a synonym, antonym, or cognate to see its definition.</p>
+        <p>To use Thessa, you'll need a <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">Google Gemini API key</a>. This key is stored securely in your browser's local storage. Manage your key via the settings icon (⚙️).</p>
+        <p style="font-size: 0.85em; opacity: 0.7"><em>Powered by <a href="https://ai.google.dev/gemini-api" target="_blank" rel="noopener noreferrer">Google Gemini API</a></em></p>
     </div>
 </div>
 
-<!-- API Key Modal -->
 <div id="apiKeyModal" class="modal-overlay">
     <div class="modal-content">
-        <button
-            class="modal-close-btn"
-            id="apiKeyModalCloseBtn"
-            aria-label="Close API Key modal"
-        >
-            ×
-        </button>
+        <button class="modal-close-btn" id="apiKeyModalCloseBtn" aria-label="Close API Key modal">×</button>
         <h3>Enter Your API Key</h3>
-        <p>Thessa requires a Gemini API key to function.</p>
-        <p>
-            If you don't already have one, you can create an API key via
-            <a
-                href="https://aistudio.google.com/app/apikey"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Google AI Studio</a
-            >.
-        </p>
+        <p>Thessa requires a Gemini API key to function. You can create one at <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">Google AI Studio</a>.</p>
         <div class="api-key-modal-input-container">
-            <input
-                type="password"
-                id="apiKeyInput"
-                placeholder="Your Gemini API Key"
-            />
-            <label for="apiKeyInput"
-                >Your key is stored locally in your browser and never sent
-                anywhere except to Google's API.</label
-            >
+            <input type="password" id="apiKeyInput" placeholder="Your Gemini API Key" />
+            <label for="apiKeyInput">Your key is stored locally and never sent anywhere except to Google's API.</label>
         </div>
         <button id="saveApiKeyBtn">Save</button>
-        <p
-            id="apiKeyError"
-            class="message-box error-message"
-            style="display: none; margin-top: 15px"
-        ></p>
+        <p id="apiKeyError" class="message-box error-message" style="display: none; margin-top: 15px;"></p>
     </div>
 </div>
 
-<!-- Definition Popover -->
-<div id="definition-popover" class="definition-popover">
-    <h4 id="popover-word">Word</h4>
-    <div
-        id="popover-definition-loader"
-        class="loading-spinner"
-        style="display: none"
-    ></div>
-    <p id="popover-definition"></p>
-    <p
-        id="popover-error"
-        class="message-box error-message"
-        style="display: none"
-    ></p>
-</div>
-
-<!-- Copy Notification -->
 <div id="copy-notification" class="copy-notification">Copied to clipboard!</div>
 {{ end }}
