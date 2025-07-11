@@ -10,7 +10,7 @@ link_icon: github
 
 Have you ever wanted to see what the Earth looks like in text form?
 
-Well, allow me to introduce **ASCII-Globe**, a program I made that dynamically renders the Earth in [ASCII art](https://en.wikipedia.org/wiki/ASCII_art). `test`
+Well, allow me to introduce **ASCII-Globe**, a program I made that dynamically renders the Earth in [ASCII art](https://en.wikipedia.org/wiki/ASCII_art).
 
 ## Demo
 
