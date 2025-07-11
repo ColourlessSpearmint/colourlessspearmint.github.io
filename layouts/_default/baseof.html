@@ -8,7 +8,13 @@
         <link rel="canonical" href="{{ .Permalink }}" />
         <meta property="og:title" content="{{ .Title }}" />
         <meta property="og:description" content="{{ .Description }}" />
+        {{ if eq .Section "about" }}
+        <meta property="og:type" content="profile" />
+        {{ else if eq .Section "blog" }}
+        <meta property="og:type" content="article" />
+        {{ else }}
         <meta property="og:type" content="website" />
+        {{ end }}
         <meta property="og:url" content="{{ .Permalink }}" />
         {{ $commonCss := resources.Get "common.css" | minify }}
         <link rel="stylesheet" href="{{ $commonCss.Permalink }}" />
