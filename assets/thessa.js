@@ -6,10 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const loadingContainer = document.getElementById("loading-container");
     const loadingText = document.getElementById("loading-text");
     const resultsArea = document.getElementById("results-area");
-    const mainCardsContainer = document.getElementById("main-cards-container");
-    const synonymsContainer = document.getElementById("synonyms-container");
-    const antonymsContainer = document.getElementById("antonyms-container");
-    const cognatesContainer = document.getElementById("cognates-container");
     const hoverPopover = document.getElementById("hover-popover");
     const copyNotificationEl = document.getElementById("copy-notification");
     const messageBoxEl = document.getElementById("message-box");
@@ -120,45 +116,41 @@ document.addEventListener("DOMContentLoaded", function () {
     function renderResults(data) {
         clearResultsAndMessages();
         
-        if (data.definition) mainCardsContainer.appendChild(createCard("Definition", data.definition));
-        if (data.etymology) mainCardsContainer.appendChild(createCard("Etymology", data.etymology));
-        if (data.example_sentence) mainCardsContainer.appendChild(createCard("Example", data.example_sentence));
+        if (data.definition) resultsArea.appendChild(createCard("Definition", data.definition));
+        if (data.etymology) resultsArea.appendChild(createCard("Etymology", data.etymology));
+        if (data.example_sentence) resultsArea.appendChild(createCard("Example", data.example_sentence));
 
-        populateCapsules(synonymsContainer, data.synonyms, "synonym");
-        populateCapsules(antonymsContainer, data.antonyms, "antonym");
-        populateCapsules(cognatesContainer, data.cognates, "cognate");
+        if (data.synonyms?.length) {
+            data.synonyms.forEach(item => resultsArea.appendChild(createCapsule(item, "synonym")));
+        }
+        if (data.antonyms?.length) {
+            data.antonyms.forEach(item => resultsArea.appendChild(createCapsule(item, "antonym")));
+        }
+        if (data.cognates?.length) {
+            data.cognates.forEach(item => resultsArea.appendChild(createCapsule(item, "cognate")));
+        }
 
         container.classList.add("results-state");
     }
 
     function createCard(label, text) {
         const card = document.createElement("div");
-        card.className = "result-card";
+        card.className = "result-item result-card";
         card.innerHTML = `<span class="label">${label}</span><p>${text}</p>`;
         card.addEventListener("click", () => copyToClipboard(text));
         return card;
     }
 
-    function populateCapsules(containerEl, items, type) {
-        if (!containerEl || !items || !items.length) {
-            if(containerEl) containerEl.style.display = "none";
-            return;
-        }
-        const wrapper = containerEl.querySelector(".capsule-wrapper");
-        if(!wrapper) return;
-        wrapper.innerHTML = '';
-        items.forEach(item => {
-            const text = type === 'cognate' ? `${item.flag_emoji || ''} <span class="language">${item.language}:</span> ${item.word}` : item.word;
-            const capsule = document.createElement("div");
-            capsule.className = `capsule ${type}-capsule`;
-            capsule.innerHTML = text;
-            capsule.dataset.definition = item.definition;
-            capsule.addEventListener("click", () => copyToClipboard(item.word));
-            capsule.addEventListener("mouseover", (e) => showHoverPopover(e.currentTarget));
-            capsule.addEventListener("mouseout", hideHoverPopover);
-            wrapper.appendChild(capsule);
-        });
-        containerEl.style.display = "block";
+    function createCapsule(item, type) {
+        const text = type === 'cognate' ? `${item.flag_emoji || ''} <span class="language">${item.language}:</span> ${item.word}` : item.word;
+        const capsule = document.createElement("div");
+        capsule.className = `result-item capsule ${type}-capsule`;
+        capsule.innerHTML = text;
+        capsule.dataset.definition = item.definition;
+        capsule.addEventListener("click", () => copyToClipboard(item.word));
+        capsule.addEventListener("mouseover", (e) => showHoverPopover(e.currentTarget));
+        capsule.addEventListener("mouseout", hideHoverPopover);
+        return capsule;
     }
 
     function showHoverPopover(element) {
@@ -183,14 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function clearResultsAndMessages() {
-        if(mainCardsContainer) mainCardsContainer.innerHTML = "";
-        [synonymsContainer, antonymsContainer, cognatesContainer].forEach(c => {
-            if(c) {
-                c.style.display = "none";
-                const wrapper = c.querySelector(".capsule-wrapper");
-                if(wrapper) wrapper.innerHTML = "";
-            }
-        });
+        if(resultsArea) resultsArea.innerHTML = "";
         if(messageBoxEl) messageBoxEl.style.display = "none";
     }
 
@@ -218,6 +203,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function getApiUrl() { return `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${userApiKey}`; }
-    function showModal(modal) { if(modal) modal.style.display = "flex"; }
-    function hideModal(modal) { if(modal) modal.style.display = "none"; }
+    function showModal(modal) { 
+        if(modal) {
+            modal.style.display = "flex";
+            setTimeout(() => modal.classList.add('visible'), 10);
+        }
+    }
+    function hideModal(modal) { 
+        if(modal) {
+            modal.classList.remove('visible');
+            setTimeout(() => modal.style.display = "none", 300);
+        }
+    }
 });
