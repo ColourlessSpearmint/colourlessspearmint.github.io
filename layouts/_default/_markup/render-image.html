@@ -1,4 +1,4 @@
-{{ $destination := replace (.Destination | safeURL) "~/" "/media/" }}
+{{ $destination := replace (.Destination | safeURL) "~/" "media/" }}
 {{ $img := resources.Get $destination }}
 {{ $src := $img.RelPermalink }}
 
@@ -13,6 +13,15 @@
 {{ $is_video := or (strings.HasSuffix $src ".webm") (strings.HasSuffix $src ".mp4") (strings.HasSuffix $src ".ogg") (strings.HasSuffix $src ".mov") }}
 {{ $is_gif := findRE "GIF" $alt }}
 {{ $alt_processed := replace $alt "GIF" ""}}
+
+{{ $lqip_value := "" }}
+{{ if and $img (eq $img.MediaType.MainType "image") (ne $img.MediaType.SubType "svg") }}
+    {{ $lqip_data := .Page.Site.Data.lqip }}
+    {{ $media_path := $destination }}
+    {{ if index $lqip_data $media_path }}
+        {{ $lqip_value = (index $lqip_data $media_path).value }}
+    {{ end }}
+{{ end }}
 
 <figure>
     {{ if $is_video }}
@@ -40,6 +49,7 @@
         alt="{{ $alt_processed }}"
         {{ if $width }}width="{{ $width }}"{{ end }}
         {{ if $height }}height="{{ $height }}"{{ end }}
+        {{ if $lqip_value }}style="--lqip: {{ $lqip_value }}; background-size: cover; background-position: center;"{{ end }}
     />
     {{ end }}
     {{- with .Title }}

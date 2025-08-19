@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LQIP Test Page</title>
+    <link rel="stylesheet" href="/classlessspearmint.css">
+    <style>
+        body {
+            margin: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .test-image {
+            max-width: 300px;
+            height: 200px;
+            border: 2px solid #ccc;
+            margin: 20px 0;
+            display: block;
+        }
+        .test-section {
+            margin: 40px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background: #f9f9f9;
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .lqip-value {
+            font-family: monospace;
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>LQIP (Low Quality Image Placeholder) Test Page</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: Image with LQIP value -524189 (anagramcolab.webp)</h2>
+        <p>This should show a blurry placeholder background that gets replaced when the image loads.</p>
+        <p></p>LQIP value: <span class="lqip-value">-524189</span></p>
+        <img 
+            class="test-image"
+            src="/media/anagramcolab.webp" 
+            alt="Test image with LQIP"
+            style="--lqip: -524189; background-size: cover; background-position: center;"
+        >
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: Image with LQIP value -170269 (aurumassistant.webp)</h2>
+        <p>Another test image with a different LQIP value to verify the system works with various encodings.</p>
+        <p>LQIP value: <span class="lqip-value">-170269</span></p>
+        <img 
+            class="test-image"
+            src="/media/aurumassistant.webp" 
+            alt="Another test image with LQIP"
+            style="--lqip: -170269; background-size: cover; background-position: center;"
+        >
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Image without LQIP (for comparison)</h2>
+        <p>This image has no LQIP value, so it should load normally without any placeholder background.</p>
+        <img 
+            class="test-image"
+            src="/media/business_of_ferrets.webp" 
+            alt="Image without LQIP placeholder"
+        >
+    </div>
+
+    <div class="test-section">
+        <h2>Test 4: Slow loading simulation</h2>
+        <p>To test the LQIP effect, you can simulate slow loading by throttling your network in browser dev tools.</p>
+        <p>LQIP value: <span class="lqip-value">172259</span></p>
+        <img 
+            class="test-image"
+            src="/media/business_of_ferrets.webp" 
+            alt="Test image for slow loading"
+            style="--lqip: 172259; background-size: cover; background-position: center;"
+        >
+    </div>
+
+    <div class="test-section">
+        <h2>CSS Debug Information</h2>
+        <p>The LQIP system uses CSS custom properties and mathematical functions. Check browser console for any CSS errors.</p>
+        <p>Required CSS functions: <code>mod()</code>, <code>round()</code>, <code>pow()</code>, <code>calc()</code></p>
+        <p>If the placeholders aren't showing, your browser might not support these CSS functions.</p>
+    </div>
+
+    <script>
+        // Log LQIP values for debugging
+        console.log('LQIP Test Page Loaded');
+        console.log('Available LQIP images:', [
+            { name: 'anagramcolab.webp', lqip: -524189 },
+            { name: 'aurumassistant.webp', lqip: -170269 },
+            { name: 'business_of_ferrets.webp', lqip: 172259 }
+        ]);
+
+        // Check if CSS functions are supported
+        const testElement = document.createElement('div');
+        testElement.style.cssText = '--test: mod(4, 3); width: calc(var(--test) * 1px);';
+        document.body.appendChild(testElement);
+        
+        const computedWidth = getComputedStyle(testElement).width;
+        console.log('CSS mod() support test - computed width:', computedWidth);
+        
+        if (computedWidth === '1px') {
+            console.log('✅ CSS mathematical functions appear to be supported');
+        } else {
+            console.log('❌ CSS mathematical functions may not be supported in this browser');
+        }
+        
+        document.body.removeChild(testElement);
+    </script>
+</body>
+</html>
